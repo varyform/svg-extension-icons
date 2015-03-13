@@ -6,12 +6,12 @@ def generate(extension)
   hsl   = Color::RGB.from_html(color).to_hsl
 
   hue = hsl.hue / 360.0
-  sat = hsl.saturation / 100
+  sat = 0.52
   lit = hsl.lightness / 100
 
-  base_color    = Color::HSL.from_fraction(hue, 0.62, lit).html
-  lighten_color = Color::HSL.from_fraction(hue, 0.62, [lit + 0.1, 1].min).html
-  darken_color  = Color::HSL.from_fraction(hue, 0.62, [lit - 0.1, 0].max).html
+  base_color    = Color::HSL.from_fraction(hue, sat, lit).html
+  lighten_color = Color::HSL.from_fraction(hue, sat, [lit + 0.1, 1].min).html
+  darken_color  = Color::HSL.from_fraction(hue, sat, [lit - 0.1, 0].max).html
 
   template = <<-SVG
     <svg xmlns="http://www.w3.org/2000/svg" width="75" height="100" viewBox="0 0 70 100" enable-background="new 0 0 70 100">
