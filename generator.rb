@@ -16,9 +16,26 @@ def generate(extension)
 
       <path fill="#{darken_color}" d="M-5 95h70v-15h-70z"/>
 
-      <text x="0" y="93.5" fill="white" font-family="Menlo">#{extension.upcase}</text>
+      <text x="0" y="92" fill="white" font-size="12" font-family="Menlo">#{extension.upcase}</text>
     </svg>
   SVG
 end
 
-File.write('output.svg', generate('txt'))
+extensions = %w(zip txt doc png gif mp3)
+
+result = <<-HTML
+  <!doctype html>
+  <html>
+    <body>
+      ICONS
+    </body>
+  </html>
+HTML
+
+srand
+
+icons = extensions.map do |ext|
+  generate(ext)
+end.join
+
+File.write('output.html', result.gsub(/ICONS/, icons))
