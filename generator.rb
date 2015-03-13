@@ -2,14 +2,22 @@ require 'color'
 require 'digest/md5'
 
 def generate(extension)
-  color = '#' << Digest::MD5.hexdigest(extension)[0..5]
+  color = Digest::MD5.hexdigest(extension)[0..5]
 
   hue = Color::RGB.from_html(color).to_hsl.hue / 360.0
+  sat = Color::RGB.from_html(color).to_hsl.saturation / 100
+  lit = Color::RGB.from_html(color).to_hsl.lightness / 100
   p [color, hue]
 
-  base_color    = Color::HSL.from_fraction(hue, 0.62, 0.63).html
-  lighten_color = Color::HSL.from_fraction(hue, 0.62, 0.83).html
-  darken_color  = Color::HSL.from_fraction(hue, 0.62, 0.53).html
+  # hue = Color::RGB.from_html(color)
+
+  base_color    = Color::HSL.from_fraction(hue, 0.62, lit).html
+  lighten_color = Color::HSL.from_fraction(hue, 0.62, [lit + 0.1, 1].min).html
+  darken_color  = Color::HSL.from_fraction(hue, 0.62, [lit - 0.1, 0].max).html
+
+  # base_color    = '#' + color
+  # lighten_color = '#' + color
+  # darken_color  = '#' + color
 
   template = <<-SVG
     <svg xmlns="http://www.w3.org/2000/svg" width="75" height="100" viewBox="0 0 70 100" enable-background="new 0 0 70 100">
