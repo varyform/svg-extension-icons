@@ -27,7 +27,6 @@ def generate(extension)
   SVG
 end
 
-# extensions = %w(zip txt doc png gif mp3)
 extensions = %w(3gp 7z ace ai aif aiff amr asf asx bat bin bmp bup cab cbr cda cdl cdr chm dat divx dll dmg doc dss dvf dwg eml eps exe fla flv gif gz hqx htm html ifo indd iso jar jpeg jpg lnk log m4a m4b m4p m4v mcd mdb mid mov mp2 mp4 mpeg mpg msi mswmm ogg pdf png pps ps psd pst ptb pub qbb qbw qxd ram rar rm rmvb rtf sea ses sit sitx ss swf tgz thm tif tmp torrent ttf txt unknown vcd vob wav wma wmv wps xls xpi zip)
 
 result = <<-HTML
@@ -39,10 +38,6 @@ result = <<-HTML
   </html>
 HTML
 
-srand
-
-icons = extensions.map do |ext|
-  generate(ext)
-end.join
+icons = extensions.map(&method(:generate)).join
 
 File.write('output.html', result.gsub(/ICONS/, icons))
