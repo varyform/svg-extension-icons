@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="75" height="100" viewBox="0 0 70 100" enable-background="new 0 0 70 100">
+  <path fill="#BE1E2D" d="M0 0v100h70v-70l-35-30z"/>
+
+  <path fill="#D84456" d="M35 0v30h35z"/>
+  <path fill="#A0182F" d="M70 60v-30h-35z"/>
+
+  <path fill="#A0182F" d="M-5 95h70v-15h-70z"/>
+
+  <text x="0" y="93.5" fill="white" font-family="Menlo">TXT</text>
+</svg>
