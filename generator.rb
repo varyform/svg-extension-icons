@@ -14,15 +14,14 @@ def generate(extension)
   darken_color  = Color::HSL.from_fraction(hue, sat, [lit - 0.1, 0].max).html
 
   template = <<-SVG
-    <svg xmlns="http://www.w3.org/2000/svg" width="75" height="100" viewBox="0 0 70 100" enable-background="new 0 0 70 100">
-      <path fill="#{base_color}" d="M0 0v100h70v-70l-35-30z"/>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 128" class="file-icon">
+      <path fill="#{base_color}" d="M12 0h52l32 32v96h-84z"/>
 
-      <path fill="#{lighten_color}" d="M35 0v30h35z"/>
-      <path fill="#{darken_color}" d="M70 60v-30h-35z"/>
+      <path fill="#{lighten_color}" d="M64 0v32h32z"/>
+      <path fill="#{darken_color}" d="M64 32h32v32z"/>
 
-      <path fill="#{darken_color}" d="M-5 95h70v-15h-70z"/>
-
-      <text x="2" y="92" fill="white" font-size="12" font-family="Menlo">#{extension.upcase}</text>
+      <path fill="#{darken_color}" d="M0 92h84v24h-84z"/>
+      <text x="8" y="110.5" fill="white" font-size="18" font-weight="normal" font-family="Menlo">#{extension.upcase}</text>
     </svg>
   SVG
 end
@@ -31,9 +30,20 @@ extensions = %w(3gp 7z ace ai aif aiff amr asf asx bat bin bmp bup cab cbr cda c
 
 result = <<-HTML
   <!doctype html>
+  <head>
+    <style type="text/css">
+      .large svg { height: 96px; }
+      .medium svg { height: 64px; }
+      .small svg { height: 32px; }
+      .tiny svg { height: 16px; }
+    </style>
+  </head>
   <html>
     <body>
-      ICONS
+      <div class="large"><h2>Large<h2>ICONS</div>
+      <div class="medium"><h2>Medium<h2>ICONS</div>
+      <div class="small"><h2>Small<h2>ICONS</div>
+      <div class="tiny"><h2>Tiny<h2>ICONS</div>
     </body>
   </html>
 HTML
